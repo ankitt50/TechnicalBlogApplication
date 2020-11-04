@@ -4,26 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import technicalblog.Services.PostService;
 import technicalblog.model.Post;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 @Controller
-public class HomeController {
+public class PostController {
 
     @Autowired
-    private PostService postService;
+    private PostService postservice;
 
-    @RequestMapping("/")
-    public String getAllPosts(Model model) {
-
-//        PostService service = new PostService();
-        ArrayList<Post> posts = postService.getAllPosts();
+    @RequestMapping("posts")
+    public String getUserPosts(Model model) {
+        ArrayList<Post> posts = postservice.getOnePost();
         model.addAttribute("posts", posts);
-        return "index";
+        return "users/posts";
     }
-
-
 }
